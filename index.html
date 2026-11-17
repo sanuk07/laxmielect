@@ -200,6 +200,15 @@ function normalizeProducts(){products=products.map(p=>({...p,SellingPrice:toNumb
 function renderAll(){updateStoreStatus();updateFooter();renderCategories();renderSidebarCategories();renderCategoryFilter();renderSecondHandProducts();renderBestSellers();renderProducts();renderPopularProducts();updateCartCount()}
 function updateStoreStatus(){isStoreOpen=String(settings.StoreStatus||"OPEN").toUpperCase()==="OPEN";const notice=document.getElementById("storeNotice");if(!isStoreOpen){notice.classList.add("show");document.getElementById("nextOpeningText").textContent=settings.NextOpeningTime?"Next opening: "+settings.NextOpeningTime:"Please check again later."}else notice.classList.remove("show")}
 function updateFooter(){const name=settings.StoreName||CONFIG.STORE_NAME;document.getElementById("logoName").textContent=name.toUpperCase();document.title=name+" | Electronics Store";document.getElementById("footerPhone").textContent=settings.StorePhone?"Phone: "+settings.StorePhone:"Contact us for assistance."}
+function renderDefaultCategories(){
+  // Render the six storefront categories immediately, before the API responds.
+  // The live Categories sheet replaces this fallback when getStoreData succeeds.
+  categories = FALLBACK_CATEGORIES.slice();
+  renderCategories();
+  renderSidebarCategories();
+  renderCategoryFilter();
+}
+
 function getActiveDisplayCategories(){return DISPLAY_CATEGORIES}
 function renderCategories(){document.getElementById("categoryGrid").innerHTML=getActiveDisplayCategories().map(group=>{const count=products.filter(p=>getProductGroup(p)===group.key).length;return '<button class="category-card" data-action="category" data-id="'+group.key+'"><div class="category-icon">'+group.emoji+'</div><div><strong>'+escapeHTML(group.name)+'</strong><span>'+count+' products</span></div></button>'}).join("")}
 function renderSidebarCategories(){document.getElementById("sidebarCategories").innerHTML=getActiveDisplayCategories().slice(0,6).map(group=>'<button class="side-category" data-action="category" data-id="'+group.key+'"><div class="cat-emoji">'+group.emoji+'</div><div><strong>'+escapeHTML(group.name)+'</strong><span>Explore products</span></div></button>').join("")}
