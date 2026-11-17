@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7f6fa">
+<title>Admin Dashboard | Laxmi Electronics Chandwa</title>
+<style>
+:root{--bg:#f7f6fa;--white:#fff;--ink:#211e2d;--muted:#85818d;--line:#eeeaf1;--primary:#e66a5b;--primary-dark:#c94d43;--navy:#211e2d;--green:#26865e;--red:#c64a4a;--amber:#bd852b;--shadow:0 8px 28px rgba(35,25,55,.055);--radius:16px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:13px}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}a{color:inherit;text-decoration:none}.hidden{display:none!important}.muted{color:var(--muted)}.small{font-size:10px}
+.topline{height:5px;background:linear-gradient(90deg,var(--primary),#8c63c7,#32254c)}
+.login-wrap{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at 15% 15%,#f5dfdc,transparent 33%),radial-gradient(circle at 85% 80%,#e9e1f5,transparent 32%),var(--bg)}
+.login-card{width:min(420px,100%);background:#fff;border:1px solid var(--line);border-radius:22px;padding:30px;box-shadow:0 20px 65px #30224612}
+.brand{display:flex;align-items:center;gap:11px;margin-bottom:25px}.brand-mark{width:46px;height:46px;border-radius:14px;background:var(--primary);color:#fff;display:grid;place-items:center;font-size:24px}.brand strong{display:block;font-size:16px}.brand span{font-size:10px;color:var(--muted);display:block;margin-top:4px}.login-card h1{font-size:24px;letter-spacing:-.8px;margin:0 0 7px}.login-card>p{font-size:11px;color:var(--muted);line-height:1.6;margin:0 0 22px}
+.field{margin-bottom:13px}.field label{display:block;font-size:10px;font-weight:850;margin-bottom:6px}.field input,.field textarea,.field select{width:100%;min-height:40px;border:1px solid var(--line);border-radius:10px;background:#fff;padding:10px 11px;outline:none;font-size:11px;color:var(--ink)}.field textarea{min-height:76px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{border-color:#bda7db}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.check-line{display:flex;align-items:center;gap:7px;font-size:10px;color:var(--muted);margin:9px 0}.check-line input{accent-color:var(--primary)}
+.btn{min-height:36px;border:0;border-radius:10px;padding:0 14px;display:inline-flex;align-items:center;justify-content:center;gap:7px;font-size:10px;font-weight:850;transition:.18s}.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primary-dark);transform:translateY(-1px)}.btn-light{background:#fff;border:1px solid var(--line);color:var(--ink)}.btn-light:hover{border-color:var(--primary)}.btn-danger{background:#fff0f0;color:#b44747;border:1px solid #f2d5d5}.btn-dark{background:var(--navy);color:#fff}.btn-block{width:100%;height:43px}.login-error{display:none;padding:10px;border-radius:9px;background:#fff0f0;color:#a43d3d;font-size:10px;margin:12px 0}.login-error.show{display:block}
+.app{min-height:100vh}.topbar{height:67px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:40}.top-left{display:flex;align-items:center;gap:12px}.top-logo{width:38px;height:38px;border-radius:12px;background:var(--primary);display:grid;place-items:center;color:#fff;font-size:20px}.top-title{font-size:13px;font-weight:900}.top-sub{font-size:9px;color:var(--muted);margin-top:3px}.top-right{display:flex;align-items:center;gap:9px}.live-pill{padding:7px 10px;background:#eaf6ef;color:#287c54;border-radius:20px;font-size:9px;font-weight:900}.icon-btn{width:35px;height:35px;border:1px solid var(--line);background:#fff;border-radius:10px}.layout{display:grid;grid-template-columns:220px minmax(0,1fr);min-height:calc(100vh - 67px)}
+.sidebar{background:#fff;border-right:1px solid var(--line);padding:19px 12px;position:sticky;top:67px;height:calc(100vh - 67px);overflow:auto}.side-label{font-size:8px;font-weight:900;letter-spacing:1.2px;color:#aaa4b1;padding:12px 10px 7px}.nav-btn{width:100%;height:40px;border:0;background:transparent;border-radius:10px;text-align:left;padding:0 11px;display:flex;align-items:center;gap:10px;font-size:10px;font-weight:750;color:#6e6977;margin:2px 0}.nav-btn:hover,.nav-btn.active{background:#fff1ed;color:var(--primary-dark)}.nav-icon{width:18px;text-align:center;font-size:15px}.side-note{margin:20px 4px 0;padding:12px;border-radius:12px;background:#f7f3fb;font-size:9px;line-height:1.6;color:#726a7c}.main{min-width:0;padding:24px}.page-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}.page-head h1{font-size:22px;letter-spacing:-.8px;margin:0}.page-head p{font-size:10px;color:var(--muted);margin:5px 0 0}.head-actions{display:flex;gap:8px;flex-wrap:wrap}.screen{display:none}.screen.active{display:block}
+.stats-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:17px}.stat-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px;box-shadow:var(--shadow);min-width:0}.stat-top{display:flex;justify-content:space-between;align-items:center}.stat-icon{width:33px;height:33px;border-radius:10px;background:#f8f0fa;display:grid;place-items:center;font-size:16px}.stat-card .label{font-size:9px;color:var(--muted);font-weight:750}.stat-card strong{display:block;font-size:23px;letter-spacing:-.7px;margin-top:10px}.stat-card small{display:block;color:var(--muted);font-size:8px;margin-top:4px}.dashboard-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(260px,1fr);gap:14px}.panel{background:#fff;border:1px solid var(--line);border-radius:15px;padding:16px;box-shadow:var(--shadow);min-width:0}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}.panel-head h3{font-size:12px;margin:0}.panel-head p{font-size:9px;color:var(--muted);margin:4px 0 0}.status-badge{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:5px 8px;font-size:8px;font-weight:900;background:#efedf3;color:#726d7c}.status-badge.green{background:#eaf6ef;color:#287c54}.status-badge.red{background:#fff0f0;color:#b44747}.status-badge.amber{background:#fff6e7;color:#986c20}
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:13px}.toolbar input,.toolbar select{height:35px;border:1px solid var(--line);border-radius:9px;background:#fff;padding:0 10px;outline:none;font-size:9px;min-width:110px}.toolbar input:focus,.toolbar select:focus{border-color:#bda7db}.toolbar .grow{flex:1;min-width:160px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:11px}table{border-collapse:collapse;width:100%;min-width:680px;background:#fff}th{background:#faf8fc;color:#777180;text-align:left;font-size:8px;letter-spacing:.45px;text-transform:uppercase;padding:11px 10px;white-space:nowrap}td{padding:11px 10px;border-top:1px solid #f0edf3;font-size:9px;vertical-align:middle}td strong{font-size:9px}.table-product{display:flex;align-items:center;gap:9px;min-width:160px}.thumb{width:38px;height:38px;border-radius:9px;background:#f4eff8;display:grid;place-items:center;overflow:hidden;font-size:18px;flex-shrink:0}.thumb img{width:100%;height:100%;object-fit:contain;padding:3px}.row-actions{display:flex;gap:5px;white-space:nowrap}.mini-btn{height:27px;padding:0 8px;border:1px solid var(--line);background:#fff;border-radius:7px;font-size:8px;font-weight:800}.mini-btn:hover{border-color:var(--primary)}.empty{padding:30px 14px;text-align:center;color:var(--muted);font-size:10px}
+.store-control{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px}.store-control strong{display:block;font-size:10px}.store-control span{display:block;font-size:8px;color:var(--muted);margin-top:4px}.toggle{width:42px;height:23px;border-radius:20px;background:#d9d5df;border:0;position:relative;flex-shrink:0}.toggle:after{content:"";position:absolute;left:3px;top:3px;width:17px;height:17px;border-radius:50%;background:#fff;transition:.2s}.toggle.on{background:var(--green)}.toggle.on:after{left:22px}.alert-row{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}.alert-row:last-child{border:0}.alert-icon{width:30px;height:30px;border-radius:9px;background:#fff5e7;display:grid;place-items:center;flex-shrink:0}.alert-row strong{font-size:9px;display:block}.alert-row span{font-size:8px;color:var(--muted);display:block;margin-top:4px}
+.modal-overlay{display:none;position:fixed;inset:0;background:#17132180;backdrop-filter:blur(4px);z-index:100;padding:15px;align-items:center;justify-content:center}.modal-overlay.show{display:flex}.modal{width:min(720px,100%);max-height:92vh;overflow:auto;border-radius:18px;background:#faf9fc;padding:20px;box-shadow:0 20px 80px #0004}.modal.narrow{width:min(470px,100%)}.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:17px}.modal-head h2{font-size:17px;margin:0}.close-btn{width:32px;height:32px;border:1px solid var(--line);background:#fff;border-radius:9px;font-size:19px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}.section-title{font-size:10px;font-weight:900;color:#827b8d;letter-spacing:.8px;text-transform:uppercase;border-bottom:1px solid var(--line);padding:4px 0 9px;margin:17px 0 12px}.image-preview{height:115px;border:1px dashed #d8cfdf;border-radius:11px;display:grid;place-items:center;background:#fff;overflow:hidden;color:var(--muted);font-size:10px}.image-preview img{width:100%;height:100%;object-fit:contain;padding:5px}.inline-help{font-size:8px;color:var(--muted);line-height:1.5;margin-top:5px}.sound-controls{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.sound-controls input{accent-color:var(--primary)}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#262233;color:#fff;padding:11px 16px;border-radius:10px;font-size:10px;font-weight:750;z-index:200;transition:.2s;max-width:90%;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.loading{display:none;position:fixed;inset:0;background:#faf9fccc;z-index:190;align-items:center;justify-content:center}.loading.show{display:flex}.spinner{width:34px;height:34px;border:4px solid #e9dced;border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.mobile-nav{display:none}
+@media(max-width:1000px){.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dashboard-grid{grid-template-columns:1fr}.layout{grid-template-columns:190px minmax(0,1fr)}.main{padding:18px}}
+@media(max-width:680px){.topbar{height:58px;padding:0 12px}.top-title{font-size:11px}.top-sub{font-size:8px}.top-right .live-pill{display:none}.layout{display:block;min-height:calc(100vh - 58px)}.sidebar{display:none}.main{padding:15px 12px 82px}.page-head{align-items:flex-start;flex-direction:column}.page-head h1{font-size:20px}.head-actions{width:100%}.head-actions .btn{flex:1}.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.stat-card{padding:11px}.stat-card strong{font-size:20px}.panel{padding:12px}.toolbar input,.toolbar select{flex:1;min-width:0}.toolbar .grow{flex-basis:100%}.mobile-nav{display:flex;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);z-index:50;justify-content:space-around;padding:7px 4px calc(7px + env(safe-area-inset-bottom));box-shadow:0 -5px 20px #21152a0a}.mobile-nav button{border:0;background:none;color:#777180;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:8px;font-weight:800;min-width:54px}.mobile-nav button span:first-child{font-size:17px}.mobile-nav button.active{color:var(--primary-dark)}.form-grid{grid-template-columns:1fr}.modal{padding:15px}.table-wrap{border-radius:9px}.dashboard-grid{gap:10px}}
+@media(max-width:380px){.main{padding-left:9px;padding-right:9px}.stats-grid{gap:6px}.stat-card strong{font-size:18px}.topbar{padding:0 8px}}
+</style>
+</head>
+<body>
+<div class="topline"></div>
+
+<!-- LOGIN -->
+<section class="login-wrap" id="loginScreen">
+  <div class="login-card">
+    <div class="brand"><div class="brand-mark">⚡</div><div><strong>LAXMI ELECTRONICS</strong><span>CHANDWA · ADMIN PORTAL</span></div></div>
+    <h1>Welcome back</h1>
+    <p>Sign in to manage products, orders, inventory and your store settings.</p>
+    <form id="loginForm">
+      <div class="field"><label>Admin Username</label><input id="adminUsername" name="username" autocomplete="username" required placeholder="Enter admin username"></div>
+      <div class="field"><label>Admin Password</label><input id="adminPassword" name="password" type="password" autocomplete="current-password" required placeholder="Enter your password"></div>
+      <div class="login-error" id="loginError"></div>
+      <button class="btn btn-primary btn-block" id="loginButton" type="submit">Sign In to Dashboard →</button>
+    </form>
+    <p class="small" style="margin:16px 0 0">Your credentials are verified by Google Apps Script. The password is not saved in this page.</p>
+  </div>
+</section>
+
+<!-- ADMIN APP -->
+<div class="app hidden" id="adminApp">
+  <header class="topbar">
+    <div class="top-left"><div class="top-logo">⚡</div><div><div class="top-title">Laxmi Electronics <span class="muted">/ Admin</span></div><div class="top-sub">STORE MANAGEMENT DASHBOARD</div></div></div>
+    <div class="top-right"><span class="live-pill" id="storeStatusPill">● STORE OPEN</span><button class="icon-btn" id="refreshButton" title="Refresh">↻</button><button class="btn btn-light" id="logoutButton">Logout</button></div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="side-label">OVERVIEW</div>
+      <button class="nav-btn active" data-screen="dashboard"><span class="nav-icon">▦</span> Dashboard</button>
+      <div class="side-label">STORE MANAGEMENT</div>
+      <button class="nav-btn" data-screen="products"><span class="nav-icon">📦</span> Products</button>
+      <button class="nav-btn" data-screen="categories"><span class="nav-icon">▤</span> Categories</button>
+      <button class="nav-btn" data-screen="inventory"><span class="nav-icon">▣</span> Inventory</button>
+      <button class="nav-btn" data-screen="orders"><span class="nav-icon">🛍️</span> Orders</button>
+      <div class="side-label">CONFIGURATION</div>
+      <button class="nav-btn" data-screen="store"><span class="nav-icon">🏪</span> Store & Shipping</button>
+      <button class="nav-btn" data-screen="notifications"><span class="nav-icon">🔔</span> Notifications</button>
+      <div class="side-note"><strong>COD ONLY</strong><br>Payments are collected in cash when the order is delivered. Online payment is disabled.</div>
+    </aside>
+
+    <main class="main">
+      <!-- DASHBOARD -->
+      <section class="screen active" id="screen-dashboard">
+        <div class="page-head"><div><h1>Dashboard</h1><p>Welcome to your store overview.</p></div><div class="head-actions"><button class="btn btn-light" data-screen-link="orders">View Orders →</button><button class="btn btn-primary" data-action="newProduct">＋ Add Product</button></div></div>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-top"><span class="label">TOTAL ORDERS</span><span class="stat-icon">🛍️</span></div><strong id="statTotalOrders">—</strong><small>All-time orders</small></div>
+          <div class="stat-card"><div class="stat-top"><span class="label">NEW ORDERS</span><span class="stat-icon">🆕</span></div><strong id="statNewOrders">—</strong><small>Need attention</small></div>
+          <div class="stat-card"><div class="stat-top"><span class="label">TOTAL SALES</span><span class="stat-icon">₹</span></div><strong id="statSales">—</strong><small>Delivered / confirmed sales as provided by backend</small></div>
+          <div class="stat-card"><div class="stat-top"><span class="label">PRODUCTS LISTED</span><span class="stat-icon">📦</span></div><strong id="statProducts">—</strong><small>Active catalogue</small></div>
+          <div class="stat-card"><div class="stat-top"><span class="label">CONFIRMED</span><span class="stat-icon">✅</span></div><strong id="statConfirmed">—</strong><small>Confirmed orders</small></div>
+          <div class="stat-card"><div class="stat-top"><span class="label">SHIPPED</span><span class="stat-icon">🚚</span></div><strong id="statShipped">—</strong><small>On the way</small></div>
+          <div class="stat-card"><div class="stat-top"><span class="label">DELIVERED</span><span class="stat-icon">📬</span></div><strong id="statDelivered">—</strong><small>Successfully delivered</small></div>
+          <div class="stat-card"><div class="stat-top"><span class="label">LOW STOCK</span><span class="stat-icon">⚠️</span></div><strong id="statLowStock">—</strong><small>At or below threshold</small></div>
+        </div>
+        <div class="dashboard-grid">
+          <div class="panel"><div class="panel-head"><div><h3>Recent Orders</h3><p>Latest customer orders</p></div><button class="btn btn-light" data-screen-link="orders">All Orders</button></div><div id="recentOrders"><div class="empty">Loading recent orders...</div></div></div>
+          <div class="panel"><div class="panel-head"><div><h3>Store Availability</h3><p>Control whether customers can place orders</p></div><span class="status-badge green" id="dashboardStoreBadge">OPEN</span></div><div class="store-control"><div><strong id="dashboardStoreLabel">Your store is open</strong><span id="dashboardStoreDescription">Customers can browse and place orders.</span></div><button class="toggle on" id="dashboardStoreToggle" aria-label="Toggle store open"></button></div><div class="field"><label>Next opening time (when closed)</label><input id="dashboardNextOpening" placeholder="e.g. Tomorrow at 9:00 AM"></div><button class="btn btn-primary" id="saveDashboardStore">Save Store Status</button></div>
+          <div class="panel"><div class="panel-head"><div><h3>Low Stock Alerts</h3><p>Products that may need restocking</p></div><button class="btn btn-light" data-screen-link="inventory">Inventory</button></div><div id="lowStockList"><div class="empty">Loading inventory...</div></div></div>
+          <div class="panel"><div class="panel-head"><div><h3>Order Summary</h3><p>Current order status breakdown</p></div></div><div id="orderSummary"><div class="empty">Loading summary...</div></div></div>
+        </div>
+      </section>
+
+      <!-- PRODUCTS -->
+      <section class="screen" id="screen-products">
+        <div class="page-head"><div><h1>Products</h1><p>Add and manage new phones, accessories, appliances and second-hand phones.</p></div><div class="head-actions"><button class="btn btn-primary" data-action="newProduct">＋ Add Product</button></div></div>
+        <div class="toolbar"><input class="grow" id="productSearch" placeholder="Search product name, brand or ID..."><select id="productCategoryFilter"><option value="">All categories</option></select><select id="productConditionFilter"><option value="">All conditions</option><option value="NEW">New</option><option value="SECOND_HAND">Second-hand</option></select><select id="productAvailabilityFilter"><option value="">All stock status</option><option value="IN">In stock</option><option value="OUT">Out of stock</option></select></div>
+        <div class="panel"><div class="panel-head"><div><h3>Product Catalogue</h3><p id="productTableCount">Products</p></div><button class="btn btn-light" id="reloadProducts">↻ Refresh</button></div><div class="table-wrap"><table><thead><tr><th>Product</th><th>Category</th><th>Condition</th><th>Price</th><th>Stock</th><th>Status</th><th>Actions</th></tr></thead><tbody id="productsTable"><tr><td colspan="7" class="empty">Products will load from Apps Script.</td></tr></tbody></table></div></div>
+      </section>
+
+      <!-- CATEGORIES -->
+      <section class="screen" id="screen-categories">
+        <div class="page-head"><div><h1>Categories</h1><p>Manage the six main storefront categories.</p></div><button class="btn btn-primary" data-action="newCategory">＋ Add Category</button></div>
+        <div class="panel"><div class="panel-head"><div><h3>Store Categories</h3><p>Categories shown on the customer website</p></div></div><div class="table-wrap"><table><thead><tr><th>Icon</th><th>Category</th><th>Sort order</th><th>Products</th><th>Status</th><th>Actions</th></tr></thead><tbody id="categoriesTable"><tr><td colspan="6" class="empty">Categories will load from Apps Script.</td></tr></tbody></table></div></div>
+      </section>
+
+      <!-- INVENTORY -->
+      <section class="screen" id="screen-inventory">
+        <div class="page-head"><div><h1>Inventory</h1><p>Monitor available units, sold quantities and restocking needs.</p></div><button class="btn btn-light" id="reloadInventory">↻ Refresh</button></div>
+        <div class="stats-grid"><div class="stat-card"><span class="label">TOTAL UNITS AVAILABLE</span><strong id="inventoryUnits">—</strong></div><div class="stat-card"><span class="label">TOTAL UNITS SOLD</span><strong id="inventorySold">—</strong></div><div class="stat-card"><span class="label">OUT OF STOCK</span><strong id="inventoryOut">—</strong></div><div class="stat-card"><span class="label">LOW STOCK</span><strong id="inventoryLow">—</strong></div></div>
+        <div class="panel"><div class="panel-head"><div><h3>Stock Register</h3><p>Update product stock from the product editor.</p></div></div><div class="table-wrap"><table><thead><tr><th>Product</th><th>Product ID</th><th>Available</th><th>Sold</th><th>Stock Status</th><th>Action</th></tr></thead><tbody id="inventoryTable"><tr><td colspan="6" class="empty">Inventory will load from Apps Script.</td></tr></tbody></table></div></div>
+      </section>
+
+      <!-- ORDERS -->
+      <section class="screen" id="screen-orders">
+        <div class="page-head"><div><h1>Orders</h1><p>Review customer details and update fulfilment progress.</p></div><button class="btn btn-light" id="reloadOrders">↻ Refresh Orders</button></div>
+        <div class="toolbar"><input class="grow" id="orderSearch" placeholder="Search order ID, customer or mobile..."><select id="orderStatusFilter"><option value="">All statuses</option><option>NEW</option><option>CONFIRMED</option><option>PACKED</option><option>SHIPPED</option><option>DELIVERED</option><option>CANCELLED</option></select><input id="orderDateFilter" type="date" aria-label="Filter by date"></div>
+        <div class="panel"><div class="panel-head"><div><h3>All Orders</h3><p id="orderTableCount">Orders</p></div><span class="status-badge">COD ONLY</span></div><div class="table-wrap"><table><thead><tr><th>Order ID</th><th>Customer</th><th>Date</th><th>Amount</th><th>Payment</th><th>Status</th><th>Action</th></tr></thead><tbody id="ordersTable"><tr><td colspan="7" class="empty">Orders will load from Apps Script.</td></tr></tbody></table></div></div>
+      </section>
+
+      <!-- STORE SETTINGS -->
+      <section class="screen" id="screen-store">
+        <div class="page-head"><div><h1>Store & Shipping</h1><p>Configure store information, availability and delivery charges.</p></div><button class="btn btn-primary" id="saveSettingsButton">Save Settings</button></div>
+        <div class="dashboard-grid">
+          <div class="panel"><div class="panel-head"><div><h3>Store Information</h3><p>Details displayed to customers</p></div></div>
+            <form id="settingsForm">
+              <div class="field"><label>Store Name</label><input name="StoreName" value="Laxmi Electronics Chandwa" required></div>
+              <div class="form-grid"><div class="field"><label>Store Contact Number</label><input name="StorePhone" inputmode="tel" placeholder="10-digit mobile number"></div><div class="field"><label>WhatsApp Number (with country code)</label><input name="WhatsAppNumber" placeholder="91XXXXXXXXXX"></div></div>
+              <div class="section-title">Shipping & Order Rules</div>
+              <div class="form-grid"><div class="field"><label>Shipping Charge (₹)</label><input name="ShippingCharge" type="number" min="0" step="1" value="0"></div><div class="field"><label>Free Shipping Above (₹)</label><input name="FreeShippingThreshold" type="number" min="0" step="1" value="0"></div></div>
+              <div class="form-grid"><div class="field"><label>Minimum Order Amount (₹)</label><input name="MinimumOrderAmount" type="number" min="0" step="1" value="0"></div><div class="field"><label>Low Stock Alert At</label><input name="LowStockThreshold" type="number" min="0" step="1" value="5"></div></div>
+              <div class="section-title">Opening Hours</div>
+              <div class="form-grid"><div class="field"><label>Opening Time</label><input name="StoreOpeningTime" type="time"></div><div class="field"><label>Closing Time</label><input name="StoreClosingTime" type="time"></div></div>
+              <div class="field"><label>Next Opening Time (store closed notice)</label><input name="NextOpeningTime" placeholder="e.g. Tomorrow at 9:00 AM"></div>
+              <div class="section-title">Payment Method</div>
+              <div class="payment-choice"><div style="font-size:22px">💵</div><div><strong>Cash on Delivery — Enabled</strong><span>UPI and online payment are disabled. Backend must enforce COD only.</span></div></div>
+            </form>
+          </div>
+          <div class="panel"><div class="panel-head"><div><h3>Store Availability</h3><p>Customers can browse while closed, but cannot check out.</p></div></div>
+            <div class="store-control"><div><strong id="storeStatusLabel">Store is open</strong><span id="storeStatusDescription">New orders are accepted.</span></div><button class="toggle on" id="storeToggle" aria-label="Toggle store"></button></div>
+            <div class="field"><label>Next opening time</label><input id="storeNextOpening" placeholder="e.g. Tomorrow at 9:00 AM"></div>
+            <button class="btn btn-primary" id="saveStoreStatus">Update Store Status</button>
+            <div class="section-title">Store Preview</div>
+            <div class="note" style="background:#f7f3fb;color:#6f667b;border-radius:10px;padding:12px;font-size:9px;line-height:1.7">When open, customers can add products and place COD orders. When closed, the storefront displays your next opening time and blocks new checkout attempts. The backend must independently enforce this restriction.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NOTIFICATIONS -->
+      <section class="screen" id="screen-notifications">
+        <div class="page-head"><div><h1>Order Notifications</h1><p>Configure sound alerts for new customer orders.</p></div></div>
+        <div class="panel" style="max-width:650px"><div class="panel-head"><div><h3>New Order Sound</h3><p>Keep this dashboard open to check for new orders periodically.</p></div><span class="status-badge" id="soundStatus">DISABLED</span></div>
+          <label class="check-line"><input type="checkbox" id="soundEnabled"> Enable new order sound</label>
+          <div class="field"><label>Volume</label><div class="sound-controls"><input type="range" id="soundVolume" min="0" max="1" step="0.05" value="0.5"><span id="volumeValue">50%</span></div></div>
+          <div class="sound-controls"><button class="btn btn-primary" id="testSound">▶ Test Sound</button><button class="btn btn-light" id="stopSound">■ Stop</button><button class="btn btn-light" id="enableOrderPolling">Start Order Checks</button></div>
+          <div class="note">Browsers require a user interaction before playing sound. Click Enable and allow audio by using Test Sound once. New-order checks use the backend's getAdminDashboard / getAdminOrders responses.</div>
+          <div class="section-title">Notification Status</div><div class="small muted" id="notificationInfo">Order checks are not running.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <nav class="mobile-nav"><button class="active" data-screen="dashboard"><span>▦</span>Home</button><button data-screen="products"><span>📦</span>Products</button><button data-screen="orders"><span>🛍️</span>Orders</button><button data-screen="inventory"><span>▣</span>Stock</button><button data-screen="store"><span>🏪</span>Store</button></nav>
+</div>
+
+<!-- PRODUCT EDITOR -->
+<div class="modal-overlay" id="productModal"><div class="modal"><div class="modal-head"><h2 id="productModalTitle">Add Product</h2><button class="close-btn" data-close="productModal">×</button></div>
+<form id="productForm">
+  <input type="hidden" name="ProductID">
+  <div class="form-grid"><div class="field"><label>Product Name *</label><input name="ProductName" required maxlength="120" placeholder="e.g. Samsung Galaxy A55"></div><div class="field"><label>Brand</label><input name="Brand" maxlength="60" placeholder="e.g. Samsung"></div></div>
+  <div class="form-grid"><div class="field"><label>Category *</label><select name="CategoryID" required id="productCategorySelect"><option value="">Select category</option></select></div><div class="field"><label>Condition *</label><select name="Condition" id="productCondition"><option value="NEW">New</option><option value="SECOND_HAND">Second-hand / Pre-owned</option></select></div></div>
+  <div class="field"><label>Product Description</label><textarea name="Description" maxlength="1500" placeholder="Describe the product..."></textarea></div>
+  <div class="form-grid"><div class="field"><label>Selling Price (₹) *</label><input name="SellingPrice" type="number" min="0" step="0.01" required></div><div class="field"><label>Original Price (₹)</label><input name="OriginalPrice" type="number" min="0" step="0.01" value="0"></div></div>
+  <div class="form-grid"><div class="field"><label>Stock Quantity *</label><input name="Stock" type="number" min="0" step="1" required value="0"></div><div class="field"><label>Warranty</label><input name="Warranty" placeholder="e.g. 1 year / No warranty"></div></div>
+  <div class="field"><label>Second-hand Condition / Grade</label><input name="ConditionDetails" placeholder="e.g. Excellent, minor scratches, battery health 90%"><div class="inline-help">Use this field to describe the actual condition of pre-owned phones. Be accurate about defects and accessories.</div></div>
+  <div class="section-title">Product Image</div>
+  <div class="form-grid"><div class="field"><label>Upload from computer</label><input id="productImageFile" type="file" accept="image/*"><div class="inline-help">The Apps Script backend will save the image to Google Drive.</div></div><div class="field"><label>Or Image URL</label><input name="ImageURL" placeholder="https://..."></div></div>
+  <div class="image-preview" id="imagePreview">Product image preview</div>
+  <div class="section-title">Variants & Specifications</div>
+  <div class="field"><label>Variants (JSON)</label><textarea name="VariantsJSON" placeholder='{"RAM":["8GB","12GB"],"Storage":["128GB","256GB"],"Colour":["Black","Blue"]}'></textarea></div>
+  <div class="field"><label>Specifications (JSON)</label><textarea name="SpecificationsJSON" placeholder='{"Display":"6.5 inch","Battery":"5000mAh","Camera":"50MP"}'></textarea></div>
+  <div class="form-grid"><label class="check-line"><input type="checkbox" name="Availability" checked> Available for sale</label><label class="check-line"><input type="checkbox" name="Featured"> Featured product</label><label class="check-line"><input type="checkbox" name="BestSeller"> Best seller</label></div>
+  <div class="modal-actions"><button type="button" class="btn btn-light" data-close="productModal">Cancel</button><button type="submit" class="btn btn-primary" id="saveProductButton">Save Product</button></div>
+</form></div></div>
+
+<!-- CATEGORY EDITOR -->
+<div class="modal-overlay" id="categoryModal"><div class="modal narrow"><div class="modal-head"><h2 id="categoryModalTitle">Add Category</h2><button class="close-btn" data-close="categoryModal">×</button></div><form id="categoryForm"><input type="hidden" name="CategoryID"><div class="field"><label>Category Name *</label><input name="CategoryName" required maxlength="60" placeholder="e.g. Mobiles"></div><div class="form-grid"><div class="field"><label>Emoji / Icon</label><input name="Emoji" maxlength="8" placeholder="📱"></div><div class="field"><label>Sort Order</label><input name="SortOrder" type="number" min="0" value="1"></div></div><label class="check-line"><input type="checkbox" name="Active" checked> Show category on website</label><div class="modal-actions"><button type="button" class="btn btn-light" data-close="categoryModal">Cancel</button><button type="submit" class="btn btn-primary">Save Category</button></div></form></div></div>
+
+<!-- ORDER DETAILS -->
+<div class="modal-overlay" id="orderModal"><div class="modal"><div class="modal-head"><h2>Order Details</h2><button class="close-btn" data-close="orderModal">×</button></div><div id="orderDetails"></div></div></div>
+
+<div class="loading" id="loading"><div class="spinner"></div></div><div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+
+/* Set this after deploying Code.gs as a Web App. */
+const API_URL = "https://script.google.com/macros/s/AKfycbyckFqwFUfTBdj34C7MKWzJqfHF5Y9cN7fOqIxd-7WNz2ltimbk1h4455p0WtNR8o9z/exec";
+const SESSION_KEY = "laxmi_admin_session_v1";
+let adminToken = sessionStorage.getItem(SESSION_KEY) || "";
+let dashboardData = {};
+let products = [];
+let categories = [];
+let orders = [];
+let settings = {};
+let selectedImage = null;
+let pollingTimer = null;
+let knownOrderIds = new Set();
+let audioContext = null;
+let activeOscillators = [];
+let soundEnabled = false;
+let soundVolume = 0.5;
+
+const DEFAULT_CATEGORIES = [
+  {CategoryID:"mobiles",CategoryName:"Mobiles",Emoji:"📱",SortOrder:1,Active:true},
+  {CategoryID:"headphones",CategoryName:"Headphones",Emoji:"🎧",SortOrder:2,Active:true},
+  {CategoryID:"mobile-accessories",CategoryName:"Mobile Accessories",Emoji:"🔌",SortOrder:3,Active:true},
+  {CategoryID:"speakers",CategoryName:"Speakers",Emoji:"🔊",SortOrder:4,Active:true},
+  {CategoryID:"home-lights",CategoryName:"Home Appliances & Lights",Emoji:"💡",SortOrder:5,Active:true},
+  {CategoryID:"electronics",CategoryName:"Electronics",Emoji:"🖥️",SortOrder:6,Active:true}
+];
+
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function num(v){const n=Number(v);return Number.isFinite(n)?n:0;}
+function money(v){return "₹"+num(v).toLocaleString("en-IN",{maximumFractionDigits:2});}
+function parseJSON(v,fallback){if(!v)return fallback;if(typeof v==="object")return v;try{return JSON.parse(v);}catch(e){return fallback;}}
+function toast(message){const el=document.getElementById("toast");el.textContent=message;el.classList.add("show");clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove("show"),2800);}
+function loading(show){document.getElementById("loading").classList.toggle("show",!!show);}
+function showModal(id){document.getElementById(id).classList.add("show");document.body.style.overflow="hidden";}
+function closeModal(id){document.getElementById(id).classList.remove("show");if(!document.querySelector(".modal-overlay.show"))document.body.style.overflow="";}
+function apiConfigured(){return API_URL&&!API_URL.includes("PASTE_YOUR_");}
+
+async function api(action,payload={},useAuth=true){
+  if(!apiConfigured())throw new Error("Apps Script Web App URL has not been configured yet.");
+  const body={action,...payload};
+  if(useAuth&&adminToken)body.token=adminToken;
+  const response=await fetch(API_URL,{method:"POST",body:JSON.stringify(body)});
+  if(!response.ok)throw new Error("Server error. Please try again.");
+  const result=await response.json();
+  if(result.success===false||result.ok===false)throw new Error(result.message||"Request failed.");
+  return result;
+}
+
+function showLogin(){document.getElementById("loginScreen").classList.remove("hidden");document.getElementById("adminApp").classList.add("hidden");}
+function showApp(){document.getElementById("loginScreen").classList.add("hidden");document.getElementById("adminApp").classList.remove("hidden");}
+
+async function login(event){
+  event.preventDefault();
+  const button=document.getElementById("loginButton"),error=document.getElementById("loginError");
+  error.classList.remove("show");button.disabled=true;button.textContent="Verifying...";
+  try{
+    const username=document.getElementById("adminUsername").value.trim();
+    const password=document.getElementById("adminPassword").value;
+    const result=await api("adminLogin",{username,password},false);
+    const token=result.token||result.data?.token;
+    if(!token)throw new Error("Login response did not contain a session token.");
+    adminToken=token;sessionStorage.setItem(SESSION_KEY,token);
+    document.getElementById("adminPassword").value="";
+    showApp();await refreshAll();
+  }catch(e){error.textContent=e.message;error.classList.add("show");}
+  finally{button.disabled=false;button.textContent="Sign In to Dashboard →";}
+}
+
+async function logout(){
+  try{if(adminToken)await api("adminLogout",{});}catch(e){}
+  adminToken="";sessionStorage.removeItem(SESSION_KEY);stopPolling();showLogin();
+}
+
+async function verifySession(){
+  if(!adminToken||!apiConfigured()){showLogin();return;}
+  try{const result=await api("adminSession",{});if(result.authenticated===false)throw new Error("Session expired");showApp();await refreshAll();}
+  catch(e){adminToken="";sessionStorage.removeItem(SESSION_KEY);showLogin();}
+}
+
+function navigate(screen){
+  document.querySelectorAll(".screen").forEach(el=>el.classList.toggle("active",el.id==="screen-"+screen));
+  document.querySelectorAll("[data-screen]").forEach(el=>el.classList.toggle("active",el.dataset.screen===screen));
+  const titles={dashboard:"Dashboard",products:"Products",categories:"Categories",inventory:"Inventory",orders:"Orders",store:"Store & Shipping",notifications:"Notifications"};
+  document.title=(titles[screen]||"Admin")+" | Laxmi Electronics";
+}
+
+function normalizeSettings(){
+  if(Array.isArray(settings)){const obj={};settings.forEach(r=>{if(r.Key!==undefined)obj[r.Key]=r.Value;});settings=obj;}
+}
+
+async function refreshAll(){
+  loading(true);
+  try{
+    const result=await api("getAdminDashboard");
+    const data=result.data||result;
+    dashboardData=data.dashboard||data.stats||data;
+    products=Array.isArray(data.products)?data.products:products;
+    categories=Array.isArray(data.categories)?data.categories:categories;
+    orders=Array.isArray(data.orders)?data.orders:orders;
+    settings=data.settings||settings||{};normalizeSettings();
+    renderDashboard();renderProducts();renderCategories();renderInventory();renderOrders();populateSettings();
+  }catch(e){toast(e.message);console.error(e);}
+  finally{loading(false);}
+}
+
+async function loadProducts(){const r=await api("getAdminProducts");products=r.products||r.data?.products||r.data||[];renderProducts();renderInventory();renderDashboard();}
+async function loadCategories(){const r=await api("getAdminCategories");categories=r.categories||r.data?.categories||r.data||[];renderCategories();populateCategorySelects();}
+async function loadOrders(){const r=await api("getAdminOrders");orders=r.orders||r.data?.orders||r.data||[];renderOrders();renderDashboard();}
+
+function storeOpen(){return String(settings.StoreStatus||"OPEN").toUpperCase()==="OPEN";}
+function productCondition(p){const raw=String(p.Condition||p.ProductCondition||p.Type||p.ProductType||"").toUpperCase();return ["SECOND_HAND","SECOND-HAND","USED","PRE_OWNED","PRE-OWNED","REFURBISHED"].includes(raw)?"SECOND_HAND":"NEW";}
+function productCategoryName(id){const c=categories.find(x=>String(x.CategoryID)===String(id));return c?c.CategoryName:(String(id||"Uncategorised"));}
+function productIcon(p){const cat=productCategoryName(p.CategoryID).toLowerCase();if(cat.includes("mobile"))return "📱";if(cat.includes("head"))return "🎧";if(cat.includes("speaker"))return "🔊";if(cat.includes("light"))return "💡";if(cat.includes("home"))return "🏠";return "📦";}
+function productImage(p){return p.ImageURL?`<img src="${esc(p.ImageURL)}" alt="" onerror="this.style.display='none'">`:productIcon(p);}
+function isAvailable(p){return num(p.Stock)>0&&!(["FALSE","NO","0","UNAVAILABLE"].includes(String(p.Availability).toUpperCase()));}
+
+function renderDashboard(){
+  const countStatus=s=>orders.filter(o=>String(o.OrderStatus||o.status||"").toUpperCase()===s).length;
+  const total=orders.length;
+  const sales=dashboardData.totalSales??dashboardData.sales??orders.filter(o=>["CONFIRMED","PACKED","SHIPPED","DELIVERED"].includes(String(o.OrderStatus||"").toUpperCase())).reduce((s,o)=>s+num(o.GrandTotal),0);
+  const low=products.filter(p=>num(p.Stock)<=num(settings.LowStockThreshold??5)&&num(p.Stock)>0).length;
+  setText("statTotalOrders",dashboardData.totalOrders??total);setText("statNewOrders",dashboardData.newOrders??countStatus("NEW"));setText("statSales",money(sales));setText("statProducts",dashboardData.totalProducts??products.length);setText("statConfirmed",dashboardData.confirmedOrders??countStatus("CONFIRMED"));setText("statShipped",dashboardData.shippedOrders??countStatus("SHIPPED"));setText("statDelivered",dashboardData.deliveredOrders??countStatus("DELIVERED"));setText("statLowStock",dashboardData.lowStockProducts??low);
+  const recent=[...orders].sort((a,b)=>new Date(b.CreatedAt||b.OrderDate||0)-new Date(a.CreatedAt||a.OrderDate||0)).slice(0,5);
+  document.getElementById("recentOrders").innerHTML=recent.length?`<div class="table-wrap"><table style="min-width:470px"><thead><tr><th>Order</th><th>Customer</th><th>Amount</th><th>Status</th></tr></thead><tbody>${recent.map(o=>`<tr><td><strong>${esc(o.OrderID)}</strong></td><td>${esc(o.CustomerName)}</td><td>${money(o.GrandTotal)}</td><td>${statusBadge(o.OrderStatus)}</td></tr>`).join("")}</tbody></table></div>`:`<div class="empty">No orders received yet.</div>`;
+  const lowItems=products.filter(p=>num(p.Stock)<=num(settings.LowStockThreshold??5)).slice(0,6);
+  document.getElementById("lowStockList").innerHTML=lowItems.length?lowItems.map(p=>`<div class="alert-row"><div class="alert-icon">⚠️</div><div><strong>${esc(p.ProductName)}</strong><span>${num(p.Stock)===0?"Out of stock":num(p.Stock)+" units remaining"}</span></div><span class="status-badge ${num(p.Stock)===0?"red":"amber"}">${num(p.Stock)===0?"OUT":"LOW"}</span></div>`).join(""):`<div class="empty">No low-stock alerts.</div>`;
+  document.getElementById("orderSummary").innerHTML=["NEW","CONFIRMED","PACKED","SHIPPED","DELIVERED","CANCELLED"].map(s=>`<div class="summary-line"><span>${s}</span><strong>${countStatus(s)}</strong></div>`).join("");
+  syncStoreControls();
+}
+function setText(id,value){const el=document.getElementById(id);if(el)el.textContent=value;}
+function statusBadge(status){const s=String(status||"NEW").toUpperCase();const cls=s==="DELIVERED"||s==="CONFIRMED"?"green":s==="CANCELLED"?"red":s==="NEW"?"amber":"";return `<span class="status-badge ${cls}">${esc(s)}</span>`;}
+
+function renderProducts(){
+  const search=(document.getElementById("productSearch")?.value||"").toLowerCase();const cat=document.getElementById("productCategoryFilter")?.value||"";const cond=document.getElementById("productConditionFilter")?.value||"";const stock=document.getElementById("productAvailabilityFilter")?.value||"";
+  const list=products.filter(p=>{const hay=[p.ProductName,p.Brand,p.ProductID].join(" ").toLowerCase();return(!search||hay.includes(search))&&(!cat||String(p.CategoryID)===cat)&&(!cond||productCondition(p)===cond)&&(!stock||(stock==="IN"?isAvailable(p):!isAvailable(p)));});
+  setText("productTableCount",list.length+" products");
+  document.getElementById("productsTable").innerHTML=list.length?list.map(p=>`<tr><td><div class="table-product"><div class="thumb">${productImage(p)}</div><div><strong>${esc(p.ProductName)}</strong><div class="small muted">${esc(p.Brand||"")} · ${esc(p.ProductID)}</div></div></div></td><td>${esc(productCategoryName(p.CategoryID))}</td><td>${productCondition(p)==="SECOND_HAND"?'<span class="status-badge amber">SECOND-HAND</span>':'<span class="status-badge green">NEW</span>'}</td><td><strong>${money(p.SellingPrice)}</strong></td><td>${num(p.Stock)}</td><td>${isAvailable(p)?'<span class="status-badge green">AVAILABLE</span>':'<span class="status-badge red">OUT OF STOCK</span>'}</td><td><div class="row-actions"><button class="mini-btn" data-edit-product="${esc(p.ProductID)}">Edit</button><button class="mini-btn" data-delete-product="${esc(p.ProductID)}">Delete</button></div></td></tr>`).join(""):`<tr><td colspan="7" class="empty">No matching products.</td></tr>`;
+}
+function populateCategorySelects(){
+  const options=categories.map(c=>`<option value="${esc(c.CategoryID)}">${esc(c.CategoryName)}</option>`).join("");
+  ["productCategoryFilter","productCategorySelect"].forEach(id=>{const el=document.getElementById(id);if(!el)return;const old=el.value;el.innerHTML=(id==="productCategoryFilter"?'<option value="">All categories</option>':'<option value="">Select category</option>')+options;el.value=old;});
+}
+function renderCategories(){
+  populateCategorySelects();
+  document.getElementById("categoriesTable").innerHTML=categories.length?categories.map(c=>`<tr><td style="font-size:19px">${esc(c.Emoji||"📦")}</td><td><strong>${esc(c.CategoryName)}</strong><div class="small muted">${esc(c.CategoryID)}</div></td><td>${num(c.SortOrder)}</td><td>${products.filter(p=>String(p.CategoryID)===String(c.CategoryID)).length}</td><td>${String(c.Active).toLowerCase()==="false"||c.Active===false?'<span class="status-badge red">HIDDEN</span>':'<span class="status-badge green">ACTIVE</span>'}</td><td><div class="row-actions"><button class="mini-btn" data-edit-category="${esc(c.CategoryID)}">Edit</button><button class="mini-btn" data-delete-category="${esc(c.CategoryID)}">Delete</button></div></td></tr>`).join(""):`<tr><td colspan="6" class="empty">No categories yet.</td></tr>`;
+}
+function renderInventory(){
+  const total=products.reduce((s,p)=>s+num(p.Stock),0),sold=products.reduce((s,p)=>s+num(p.SoldQty),0),out=products.filter(p=>num(p.Stock)===0).length,low=products.filter(p=>num(p.Stock)>0&&num(p.Stock)<=num(settings.LowStockThreshold??5)).length;
+  setText("inventoryUnits",total);setText("inventorySold",sold);setText("inventoryOut",out);setText("inventoryLow",low);
+  document.getElementById("inventoryTable").innerHTML=products.length?products.map(p=>`<tr><td><strong>${esc(p.ProductName)}</strong><div class="small muted">${esc(p.Brand||"")}</div></td><td>${esc(p.ProductID)}</td><td><strong>${num(p.Stock)}</strong></td><td>${num(p.SoldQty)}</td><td>${num(p.Stock)===0?'<span class="status-badge red">OUT OF STOCK</span>':num(p.Stock)<=num(settings.LowStockThreshold??5)?'<span class="status-badge amber">LOW STOCK</span>':'<span class="status-badge green">IN STOCK</span>'}</td><td><button class="mini-btn" data-edit-product="${esc(p.ProductID)}">Update stock</button></td></tr>`).join(""):`<tr><td colspan="6" class="empty">No products in inventory.</td></tr>`;
+}
+function renderOrders(){
+  const search=(document.getElementById("orderSearch")?.value||"").toLowerCase(),status=document.getElementById("orderStatusFilter")?.value||"",date=document.getElementById("orderDateFilter")?.value||"";
+  const list=orders.filter(o=>{const hay=[o.OrderID,o.CustomerName,o.Mobile].join(" ").toLowerCase();const day=String(o.CreatedAt||o.OrderDate||"").slice(0,10);return(!search||hay.includes(search))&&(!status||String(o.OrderStatus).toUpperCase()===status)&&(!date||day===date);});
+  setText("orderTableCount",list.length+" orders");
+  document.getElementById("ordersTable").innerHTML=list.length?list.map(o=>`<tr><td><strong>${esc(o.OrderID)}</strong></td><td><strong>${esc(o.CustomerName)}</strong><div class="small muted">${esc(o.Mobile)}</div></td><td>${esc(o.CreatedAt||o.OrderDate||"")}</td><td><strong>${money(o.GrandTotal)}</strong></td><td>COD</td><td>${statusBadge(o.OrderStatus)}</td><td><button class="mini-btn" data-view-order="${esc(o.OrderID)}">View / Update</button></td></tr>`).join(""):`<tr><td colspan="7" class="empty">No matching orders.</td></tr>`;
+}
+
+function populateSettings(){
+  const form=document.getElementById("settingsForm");
+  Object.keys(settings).forEach(key=>{const field=form.elements.namedItem(key);if(field&&field.type!=="checkbox")field.value=settings[key]??"";});
+  document.getElementById("storeNextOpening").value=settings.NextOpeningTime||"";
+  syncStoreControls();
+}
+function syncStoreControls(){
+  const open=storeOpen();
+  ["storeToggle","dashboardStoreToggle"].forEach(id=>document.getElementById(id).classList.toggle("on",open));
+  setText("storeStatusLabel",open?"Store is open":"Store is closed");setText("storeStatusDescription",open?"New orders are accepted.":"Customers can browse, but checkout is blocked.");
+  setText("dashboardStoreLabel",open?"Your store is open":"Your store is closed");setText("dashboardStoreDescription",open?"Customers can browse and place orders.":"Browsing is available; new orders are blocked.");
+  setText("storeStatusPill",open?"● STORE OPEN":"● STORE CLOSED");
+  const pill=document.getElementById("storeStatusPill");pill.style.background=open?"#eaf6ef":"#fff0f0";pill.style.color=open?"#287c54":"#b44747";
+  const badge=document.getElementById("dashboardStoreBadge");badge.textContent=open?"OPEN":"CLOSED";badge.className="status-badge "+(open?"green":"red");
+  document.getElementById("dashboardNextOpening").value=settings.NextOpeningTime||"";
+}
+
+function openProductEditor(id){
+  const form=document.getElementById("productForm");form.reset();selectedImage=null;document.getElementById("imagePreview").textContent="Product image preview";populateCategorySelects();
+  const p=id?products.find(x=>String(x.ProductID)===String(id)):null;
+  document.getElementById("productModalTitle").textContent=p?"Edit Product":"Add Product";
+  if(p){
+    ["ProductID","ProductName","Brand","CategoryID","Description","SellingPrice","OriginalPrice","ImageURL","Warranty","Stock","VariantsJSON","SpecificationsJSON"].forEach(k=>{if(form.elements[k])form.elements[k].value=p[k]??"";});
+    form.elements.Condition.value=productCondition(p);form.elements.ConditionDetails.value=p.ConditionDetails||p.ConditionNotes||"";
+    form.elements.Availability.checked=String(p.Availability).toLowerCase()!=="false";form.elements.Featured.checked=!!p.Featured;form.elements.BestSeller.checked=!!p.BestSeller;
+    if(p.ImageURL)showImagePreview(p.ImageURL);
+  }else{form.elements.ProductID.value="";form.elements.Availability.checked=true;}
+  showModal("productModal");
+}
+function showImagePreview(src){document.getElementById("imagePreview").innerHTML=`<img src="${esc(src)}" alt="Preview" onerror="this.parentElement.textContent='Could not load image preview'">`;}
+async function saveProduct(event){
+  event.preventDefault();const form=event.target;if(!form.reportValidity())return;
+  let imageURL=form.elements.ImageURL.value.trim();
+  const file=document.getElementById("productImageFile").files[0];
+  const button=document.getElementById("saveProductButton");button.disabled=true;button.textContent="Saving...";
+  try{
+    if(file){
+      if(file.size>5*1024*1024)throw new Error("Please choose an image smaller than 5 MB.");
+      const base64=await fileToBase64(file);
+      const upload=await api("uploadProductImage",{fileName:file.name,mimeType:file.type,base64});
+      imageURL=upload.imageURL||upload.url||upload.data?.imageURL;
+      if(!imageURL)throw new Error("Image upload did not return a URL.");
+    }
+    const fd=new FormData(form);const product={};
+    ["ProductID","ProductName","Brand","CategoryID","Description","SellingPrice","OriginalPrice","Warranty","Stock","VariantsJSON","SpecificationsJSON"].forEach(k=>product[k]=String(fd.get(k)||"").trim());
+    product.ImageURL=imageURL;product.Condition=String(fd.get("Condition")||"NEW");product.ConditionDetails=String(fd.get("ConditionDetails")||"").trim();product.Availability=form.elements.Availability.checked;product.Featured=form.elements.Featured.checked;product.BestSeller=form.elements.BestSeller.checked;
+    product.SellingPrice=num(product.SellingPrice);product.OriginalPrice=num(product.OriginalPrice);product.Stock=Math.max(0,Math.floor(num(product.Stock)));
+    if(product.VariantsJSON)JSON.parse(product.VariantsJSON);if(product.SpecificationsJSON)JSON.parse(product.SpecificationsJSON);
+    await api("saveProduct",{product});closeModal("productModal");toast("Product saved successfully.");await refreshAll();
+  }catch(e){toast(e.message);}
+  finally{button.disabled=false;button.textContent="Save Product";}
+}
+function fileToBase64(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(",")[1]);reader.onerror=()=>reject(new Error("Could not read selected image."));reader.readAsDataURL(file);});}
+async function deleteProduct(id){const p=products.find(x=>String(x.ProductID)===String(id));if(!p||!confirm(`Delete product “${p.ProductName}”? This cannot be undone.`))return;try{await api("deleteProduct",{productId:id});toast("Product deleted.");await refreshAll();}catch(e){toast(e.message);}}
+
+function openCategoryEditor(id){const form=document.getElementById("categoryForm");form.reset();const c=id?categories.find(x=>String(x.CategoryID)===String(id)):null;document.getElementById("categoryModalTitle").textContent=c?"Edit Category":"Add Category";if(c){form.elements.CategoryID.value=c.CategoryID;form.elements.CategoryName.value=c.CategoryName;form.elements.Emoji.value=c.Emoji||"📦";form.elements.SortOrder.value=c.SortOrder||1;form.elements.Active.checked=String(c.Active).toLowerCase()!=="false";}else{form.elements.Active.checked=true;form.elements.SortOrder.value=categories.length+1;}showModal("categoryModal");}
+async function saveCategory(event){event.preventDefault();const f=event.target;if(!f.reportValidity())return;const category={CategoryID:f.elements.CategoryID.value,CategoryName:f.elements.CategoryName.value.trim(),Emoji:f.elements.Emoji.value.trim()||"📦",SortOrder:num(f.elements.SortOrder.value),Active:f.elements.Active.checked};try{await api("saveCategory",{category});closeModal("categoryModal");toast("Category saved.");await refreshAll();}catch(e){toast(e.message);}}
+async function deleteCategory(id){const c=categories.find(x=>String(x.CategoryID)===String(id));if(!c||!confirm(`Delete category “${c.CategoryName}”? Products assigned to it may need reassignment.`))return;try{await api("deleteCategory",{categoryId:id});toast("Category deleted.");await refreshAll();}catch(e){toast(e.message);}}
+
+function openOrder(id){const o=orders.find(x=>String(x.OrderID)===String(id));if(!o)return;const items=o.items||o.OrderItems||[];document.getElementById("orderDetails").innerHTML=`
+  <div class="stats-grid" style="grid-template-columns:repeat(2,1fr)"><div class="stat-card"><span class="label">ORDER ID</span><strong style="font-size:14px">${esc(o.OrderID)}</strong></div><div class="stat-card"><span class="label">GRAND TOTAL</span><strong style="font-size:18px">${money(o.GrandTotal)}</strong></div></div>
+  <div class="section-title">Customer Details</div><div class="form-grid"><div><span class="small muted">Customer</span><p><strong>${esc(o.CustomerName)}</strong></p></div><div><span class="small muted">Mobile</span><p><strong>${esc(o.Mobile)}</strong></p></div></div><p class="small"><strong>Address:</strong> ${esc([o.Address,o.PINCode,o.City,o.State].filter(Boolean).join(", "))}</p>
+  <div class="section-title">Order Items</div><div class="table-wrap"><table style="min-width:450px"><thead><tr><th>Product</th><th>Qty</th><th>Variant</th><th>Total</th></tr></thead><tbody>${items.map(i=>`<tr><td>${esc(i.ProductName||i.productName||i.ProductID)}</td><td>${num(i.Quantity||i.quantity)}</td><td>${esc(i.SelectedVariant||i.selectedVariant||"")}</td><td>${money(i.LineTotal||i.lineTotal)}</td></tr>`).join("")||'<tr><td colspan="4" class="empty">Order item details are not included in this response.</td></tr>'}</tbody></table></div>
+  <div class="section-title">Payment & Fulfilment</div><div class="summary-line"><span>Payment method</span><strong>Cash on Delivery</strong></div><div class="summary-line"><span>Payment status</span><strong>${esc(o.PaymentStatus||"PENDING")}</strong></div>
+  <form id="orderUpdateForm" data-order-id="${esc(o.OrderID)}"><div class="form-grid"><div class="field"><label>Order Status</label><select name="OrderStatus">${["NEW","CONFIRMED","PACKED","SHIPPED","DELIVERED","CANCELLED"].map(s=>`<option ${String(o.OrderStatus).toUpperCase()===s?"selected":""}>${s}</option>`).join("")}</select></div><div class="field"><label>Courier Name</label><input name="CourierName" value="${esc(o.CourierName||"")}"></div></div><div class="field"><label>Tracking Number</label><input name="TrackingNumber" value="${esc(o.TrackingNumber||"")}"></div><button class="btn btn-primary" type="submit">Save Order Update</button></form>`;
+  showModal("orderModal");
+}
+async function updateOrder(event){event.preventDefault();const f=event.target;const payload={orderId:f.dataset.orderId,orderStatus:f.elements.OrderStatus.value,courierName:f.elements.CourierName.value.trim(),trackingNumber:f.elements.TrackingNumber.value.trim()};if(payload.orderStatus==="CANCELLED"&&!confirm("Cancel this order? The backend should restore stock where applicable."))return;try{await api("updateOrderStatus",payload);closeModal("orderModal");toast("Order updated.");await refreshAll();}catch(e){toast(e.message);}}
+
+async function saveSettings(){const f=document.getElementById("settingsForm");const settingsUpdate={};[...f.elements].forEach(el=>{if(el.name)settingsUpdate[el.name]=el.value;});settingsUpdate.StoreStatus=storeOpen()?"OPEN":"CLOSED";settingsUpdate.PaymentCODEnabled=true;settingsUpdate.PaymentUPIEnabled=false;settingsUpdate.UPIID="";try{await api("updateStoreSettings",{settings:settingsUpdate});toast("Store settings saved.");await refreshAll();}catch(e){toast(e.message);}}
+async function saveStoreStatus(){const open=document.getElementById("storeToggle").classList.contains("on");const next=document.getElementById("storeNextOpening").value.trim();try{await api("updateStoreStatus",{storeStatus:open?"OPEN":"CLOSED",nextOpeningTime:next});settings.StoreStatus=open?"OPEN":"CLOSED";settings.NextOpeningTime=next;syncStoreControls();toast("Store availability updated.");}catch(e){toast(e.message);}}
+async function saveDashboardStore(){const open=document.getElementById("dashboardStoreToggle").classList.contains("on");const next=document.getElementById("dashboardNextOpening").value.trim();try{await api("updateStoreStatus",{storeStatus:open?"OPEN":"CLOSED",nextOpeningTime:next});settings.StoreStatus=open?"OPEN":"CLOSED";settings.NextOpeningTime=next;syncStoreControls();toast("Store status updated.");}catch(e){toast(e.message);}}
+
+function playAlert(){
+  if(!soundEnabled)return;
+  try{
+    const AudioCtx=window.AudioContext||window.webkitAudioContext;if(!AudioCtx)return;
+    audioContext=audioContext||new AudioCtx();if(audioContext.state==="suspended")audioContext.resume();
+    [660,880,660].forEach((freq,i)=>{const osc=audioContext.createOscillator(),gain=audioContext.createGain();osc.type="sine";osc.frequency.value=freq;gain.gain.setValueAtTime(0,audioContext.currentTime+i*.22);gain.gain.linearRampToValueAtTime(soundVolume*.22,audioContext.currentTime+i*.22+.03);gain.gain.exponentialRampToValueAtTime(.001,audioContext.currentTime+i*.22+.18);osc.connect(gain);gain.connect(audioContext.destination);osc.start(audioContext.currentTime+i*.22);osc.stop(audioContext.currentTime+i*.22+.2);activeOscillators.push(osc);});
+  }catch(e){console.warn("Audio unavailable",e);}
+}
+function stopSound(){activeOscillators.forEach(o=>{try{o.stop();}catch(e){}});activeOscillators=[];}
+function syncSoundUI(){document.getElementById("soundStatus").textContent=soundEnabled?"ENABLED":"DISABLED";document.getElementById("soundStatus").className="status-badge "+(soundEnabled?"green":"");document.getElementById("soundEnabled").checked=soundEnabled;document.getElementById("soundVolume").value=soundVolume;setText("volumeValue",Math.round(soundVolume*100)+"%");}
+async function checkForNewOrders(){try{const r=await api("getAdminOrders");const incoming=r.orders||r.data?.orders||r.data||[];const ids=new Set(incoming.map(o=>String(o.OrderID)));if(knownOrderIds.size){const hasNew=[...ids].some(id=>!knownOrderIds.has(id));if(hasNew&&soundEnabled)playAlert();}knownOrderIds=ids;orders=incoming;renderOrders();renderDashboard();setText("notificationInfo","Last checked: "+new Date().toLocaleTimeString());}catch(e){setText("notificationInfo","Order check failed: "+e.message);}}
+function startPolling(){if(pollingTimer)clearInterval(pollingTimer);checkForNewOrders();pollingTimer=setInterval(checkForNewOrders,30000);setText("notificationInfo","Checking for new orders every 30 seconds.");document.getElementById("enableOrderPolling").textContent="Stop Order Checks";}
+function stopPolling(){if(pollingTimer)clearInterval(pollingTimer);pollingTimer=null;setText("notificationInfo","Order checks are not running.");const b=document.getElementById("enableOrderPolling");if(b)b.textContent="Start Order Checks";}
+
+/* EVENT WIRING */
+document.getElementById("loginForm").addEventListener("submit",login);
+document.getElementById("logoutButton").addEventListener("click",logout);
+document.getElementById("refreshButton").addEventListener("click",refreshAll);
+document.getElementById("productForm").addEventListener("submit",saveProduct);
+document.getElementById("categoryForm").addEventListener("submit",saveCategory);
+document.getElementById("settingsForm").addEventListener("submit",e=>{e.preventDefault();saveSettings();});
+document.getElementById("saveSettingsButton").addEventListener("click",saveSettings);
+document.getElementById("saveStoreStatus").addEventListener("click",saveStoreStatus);
+document.getElementById("saveDashboardStore").addEventListener("click",saveDashboardStore);
+document.getElementById("reloadProducts").addEventListener("click",loadProducts);
+document.getElementById("reloadInventory").addEventListener("click",loadProducts);
+document.getElementById("reloadOrders").addEventListener("click",loadOrders);
+document.getElementById("productSearch").addEventListener("input",renderProducts);
+["productCategoryFilter","productConditionFilter","productAvailabilityFilter"].forEach(id=>document.getElementById(id).addEventListener("change",renderProducts));
+document.getElementById("orderSearch").addEventListener("input",renderOrders);
+["orderStatusFilter","orderDateFilter"].forEach(id=>document.getElementById(id).addEventListener("change",renderOrders));
+document.getElementById("storeToggle").addEventListener("click",e=>e.currentTarget.classList.toggle("on"));
+document.getElementById("dashboardStoreToggle").addEventListener("click",e=>e.currentTarget.classList.toggle("on"));
+document.getElementById("soundEnabled").addEventListener("change",e=>{soundEnabled=e.target.checked;syncSoundUI();if(soundEnabled)playAlert();else stopSound();});
+document.getElementById("soundVolume").addEventListener("input",e=>{soundVolume=Number(e.target.value);setText("volumeValue",Math.round(soundVolume*100)+"%");});
+document.getElementById("testSound").addEventListener("click",()=>{if(!soundEnabled){soundEnabled=true;syncSoundUI();}playAlert();});
+document.getElementById("stopSound").addEventListener("click",stopSound);
+document.getElementById("enableOrderPolling").addEventListener("click",()=>pollingTimer?stopPolling():startPolling());
+document.getElementById("productImageFile").addEventListener("change",e=>{const file=e.target.files[0];if(!file)return;const url=URL.createObjectURL(file);showImagePreview(url);});
+
+document.addEventListener("click",async e=>{
+  const close=e.target.closest("[data-close]");if(close){closeModal(close.dataset.close);return;}
+  const screen=e.target.closest("[data-screen], [data-screen-link]");if(screen){navigate(screen.dataset.screen||screen.dataset.screenLink);return;}
+  const action=e.target.closest("[data-action]");if(action){if(action.dataset.action==="newProduct")openProductEditor();if(action.dataset.action==="newCategory")openCategoryEditor();return;}
+  const editProduct=e.target.closest("[data-edit-product]");if(editProduct){openProductEditor(editProduct.dataset.editProduct);return;}
+  const deleteProductBtn=e.target.closest("[data-delete-product]");if(deleteProductBtn){deleteProduct(deleteProductBtn.dataset.deleteProduct);return;}
+  const editCategory=e.target.closest("[data-edit-category]");if(editCategory){openCategoryEditor(editCategory.dataset.editCategory);return;}
+  const deleteCategoryBtn=e.target.closest("[data-delete-category]");if(deleteCategoryBtn){deleteCategory(deleteCategoryBtn.dataset.deleteCategory);return;}
+  const viewOrder=e.target.closest("[data-view-order]");if(viewOrder){openOrder(viewOrder.dataset.viewOrder);return;}
+});
+document.addEventListener("submit",e=>{if(e.target.id==="orderUpdateForm")updateOrder(e);});
+document.querySelectorAll(".modal-overlay").forEach(el=>el.addEventListener("click",e=>{if(e.target===el)closeModal(el.id);}));
+
+document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".modal-overlay.show").forEach(m=>closeModal(m.id));});
+
+syncSoundUI();
+verifySession();
+</script>
+</body>
+</html>
