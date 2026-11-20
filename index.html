@@ -25,12 +25,43 @@
 @media(max-width:760px){.shell{width:calc(100% - 24px)}.header-inner{height:auto;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;padding:9px 0;column-gap:8px;row-gap:9px}.logo{grid-column:1;grid-row:1;min-width:0;width:100%;gap:8px}.logo-mark{width:36px;height:36px;flex:0 0 36px}.logo-title{font-size:12px;white-space:nowrap;letter-spacing:-.35px}.logo-sub{font-size:8px;white-space:nowrap}.nav{display:none}.header-right{display:contents}.search-box{grid-column:1/-1;grid-row:2;width:100%;min-width:0}.search-box input{height:38px;font-size:11px}.header-btn{grid-row:1;padding:0 9px;min-height:36px;font-size:10px;justify-content:center}.header-btn[data-action="track"]{grid-column:2}.header-btn[data-action="cart"]{grid-column:3}.page-layout{grid-template-columns:1fr;padding-top:12px;gap:15px}.hero{min-height:260px;padding:23px 5%;grid-template-columns:1fr .78fr}.hero h1{font-size:clamp(27px,6vw,39px)}.hero-art{min-height:180px}.hero-orbit{width:150px;height:150px}.phone-stack{transform:scale(.82)}.hero-float{font-size:8px;padding:7px}.service{gap:5px}.service-icon{font-size:14px}.service strong{font-size:8px}.service span{font-size:7px}.side-column{display:grid;grid-template-columns:1fr 1fr;align-items:start}.side-card:first-child,.side-card:last-child{grid-column:1/-1}.deal-card{min-height:150px}.side-category-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.topbar{font-size:8px;line-height:1.35;padding:7px 10px}.logo-title{font-size:11px}.logo-sub{font-size:7px;letter-spacing:.45px}.header-btn{padding:0 8px;min-width:35px}.header-btn .button-label{display:none}.hero{grid-template-columns:1fr;min-height:auto;padding:22px 20px 10px}.hero h1{font-size:37px}.hero-copy p{font-size:10px}.hero-art{min-height:140px}.hero-orbit{width:125px;height:125px}.phone-stack{transform:scale(.7)}.hero-float.top{right:7%}.hero-float.bottom{left:7%;bottom:7px}.service-strip{grid-template-columns:1fr 1fr;gap:12px}.service{justify-content:flex-start;padding-left:9px}.service:nth-child(3){border-left:0}.category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.category-card{padding:10px 8px;gap:8px}.category-icon{width:36px;height:36px}.category-card strong{font-size:9px}.category-card span{font-size:7px}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.product-image{height:137px}.product-emoji{font-size:57px}.product-info{padding:9px}.product-name{font-size:9px;min-height:27px}.product-price{font-size:13px}.product-buttons button{height:29px;font-size:8px}.side-column{grid-template-columns:1fr}.side-card:first-child,.side-card:last-child{grid-column:auto}.side-card{padding:12px}.preowned-banner{grid-template-columns:1fr auto;padding:16px 14px;gap:5px}.preowned-banner h2{font-size:19px}.preowned-banner p{font-size:9px}.preowned-art{font-size:57px}.preowned-banner .btn{margin-top:9px}.footer-grid{grid-template-columns:1fr 1fr;gap:17px}.footer-grid>div:first-child{grid-column:1/-1}.footer-bottom{font-size:8px}.detail-layout{grid-template-columns:1fr}.detail-image{min-height:190px}.detail-image img{max-height:220px}.detail-emoji{font-size:78px}.form-grid{grid-template-columns:1fr}.modal{padding:15px}}
 @media(max-width:370px){.shell{width:calc(100% - 16px)}.header-inner{column-gap:6px}.logo{gap:6px}.logo-mark{width:33px;height:33px;flex-basis:33px;font-size:19px;border-radius:11px}.logo-title{font-size:10px;letter-spacing:-.3px}.logo-sub{display:none}.header-btn{min-width:32px;padding:0 6px}.hero h1{font-size:33px}.product-image{height:123px}.category-card{flex-direction:column;text-align:center}.preowned-art{font-size:48px}}
+
+/* LAXMI ELECTRONICS BRANDING AND STRONGER TYPE */
+.logo{min-width:248px;gap:9px}
+.logo-mark{width:44px;height:44px;flex:0 0 44px;display:block;object-fit:contain;background:transparent;border-radius:0;padding:0;filter:drop-shadow(0 2px 3px rgba(40,25,10,.12))}
+.logo-copy{min-width:0;display:flex;flex-direction:column;gap:3px}
+.logo-title{font-size:14px;font-weight:950;line-height:1.08;letter-spacing:-.45px;color:var(--ink);white-space:nowrap}
+.logo-sub{font-size:8px;font-weight:850;letter-spacing:1.25px;color:var(--primary-dark);margin-top:0}
+h1,h2,h3,h4{font-weight:850}
+button,.btn,.header-btn{font-weight:850}
+.section-head h2,.side-heading h3,.panel h3,.product-name,.product-price,.detail-price,.summary strong,.footer h4{font-weight:900}
+@media(max-width:760px){
+ .logo{min-width:0;gap:7px}
+ .logo-mark{width:38px;height:38px;flex-basis:38px}
+ .logo-title{font-size:11px;letter-spacing:-.3px}
+ .logo-sub{font-size:7px;letter-spacing:.75px}
+}
+@media(max-width:520px){
+ .logo-title{font-size:10px;letter-spacing:-.25px}
+ .logo-sub{font-size:6.5px;letter-spacing:.55px}
+}
+@media(max-width:370px){
+ .logo-mark{width:34px;height:34px;flex-basis:34px}
+ .logo-title{font-size:9px;letter-spacing:-.3px}
+ .logo-sub{font-size:6px}
+}
+
+
+.empty-logo{width:44px;height:44px;object-fit:contain;display:block;margin:auto}
+.footer-brand-title{display:flex;align-items:center;gap:9px;font-weight:950}
+.footer-brand-title img{width:34px;height:34px;object-fit:contain;flex:0 0 34px}
+
 </style>
 </head>
 <body>
 <div class="topbar">WELCOME TO LAXMI ELECTRONICS CHANDWA · SMARTER TECHNOLOGY · CASH ON DELIVERY</div>
 <header class="header"><div class="shell header-inner">
-  <a href="#" class="logo"><div class="logo-mark">⚡</div><div><div class="logo-title" id="logoName">LAXMI ELECTRONICS</div><div class="logo-sub">CHANDWA · YOUR TRUSTED STORE</div></div></a>
+  <a href="#" class="logo" aria-label="Laxmi Electronics Chandwa home"><img class="logo-mark" src="logo.png" alt="Laxmi Electronics logo"><div class="logo-copy"><div class="logo-title" id="logoName">LAXMI ELECTRONICS CHANDWA</div><div class="logo-sub">YOUR TRUSTED STORE</div></div></a>
   <nav class="nav"><a href="#">Home</a><a href="#products">Shop</a><a href="#categories">Categories</a><a href="#secondHand">Second-hand Phones</a><a href="#footer">Contact</a></nav>
   <div class="header-right">
     <div class="search-box"><input id="headerSearch" type="search" placeholder="Search for products..." aria-label="Search products"><span class="search-symbol">⌕</span></div>
@@ -65,7 +96,7 @@
 
   <section class="section" id="products"><div class="section-head"><div><h2>Explore All Products</h2><p>Find the right electronics for you.</p></div><span class="section-link" id="productCount">0 products</span></div>
     <div class="filter-panel"><input id="productSearch" class="filter-search" type="search" placeholder="Search product or brand..."><select id="categoryFilter"><option value="">All categories</option></select><select id="sortFilter"><option value="newest">Newest first</option><option value="popular">Most popular</option><option value="low">Price: Low to high</option><option value="high">Price: High to low</option></select><input id="maxPrice" type="number" min="0" placeholder="Max ₹"><label class="stock-filter"><input id="inStockOnly" type="checkbox"> In stock</label></div>
-    <div class="product-grid" id="productGrid"><div class="empty-state"><div class="empty-icon">⚡</div><h3>Connecting to Laxmi Electronics</h3><p>Products will appear after connecting the store backend.</p></div></div>
+    <div class="product-grid" id="productGrid"><div class="empty-state"><div class="empty-icon"><img class="empty-logo" src="logo.png" alt="Laxmi Electronics logo"></div><h3>Connecting to Laxmi Electronics</h3><p>Products will appear after connecting the store backend.</p></div></div>
   </section>
 </main>
 
@@ -77,7 +108,7 @@
   <section class="side-card"><div style="display:flex;gap:11px;align-items:center"><div style="font-size:26px">💬</div><div><strong style="font-size:11px">Need help choosing?</strong><p style="font-size:9px;color:var(--muted);margin:5px 0 0;line-height:1.5">Contact our team for product information and assistance.</p></div></div><button class="btn btn-primary" data-action="whatsapp" style="width:100%;margin-top:12px">Chat on WhatsApp</button></section>
 </aside></div>
 
-<footer class="footer" id="footer"><div class="shell"><div class="footer-grid"><div><h3>⚡ Laxmi Electronics Chandwa</h3><p>Your destination for mobiles, headphones, speakers, home appliances, lighting and electronics accessories.</p><a href="#" data-action="whatsapp">Contact us on WhatsApp →</a></div><div><h3>Quick Links</h3><p><a href="#">Home</a></p><p><a href="#products">All Products</a></p><p><a href="#categories">Categories</a></p><p><a href="#secondHand">Second-hand Phones</a></p><p><a href="#" data-action="track">Track Order</a></p></div><div><h3>Customer Support</h3><p id="footerPhone">Contact us for assistance.</p><p>Payment: Cash on Delivery only</p><p><a href="#" data-action="whatsapp">Need Help?</a></p></div></div><div class="footer-bottom"><span>© <span id="currentYear"></span> Laxmi Electronics Chandwa. All rights reserved.</span><span>Made with ❤️ by <a href="#" data-action="owner" style="color:white;font-weight:850">SANU KUMAR</a></span></div></div></footer>
+<footer class="footer" id="footer"><div class="shell"><div class="footer-grid"><div><h3 class="footer-brand-title"><img src="logo.png" alt="Laxmi Electronics logo"> LAXMI ELECTRONICS CHANDWA</h3><p>Your destination for mobiles, headphones, speakers, home appliances, lighting and electronics accessories.</p><a href="#" data-action="whatsapp">Contact us on WhatsApp →</a></div><div><h3>Quick Links</h3><p><a href="#">Home</a></p><p><a href="#products">All Products</a></p><p><a href="#categories">Categories</a></p><p><a href="#secondHand">Second-hand Phones</a></p><p><a href="#" data-action="track">Track Order</a></p></div><div><h3>Customer Support</h3><p id="footerPhone">Contact us for assistance.</p><p>Payment: Cash on Delivery only</p><p><a href="#" data-action="whatsapp">Need Help?</a></p></div></div><div class="footer-bottom"><span>© <span id="currentYear"></span> Laxmi Electronics Chandwa. All rights reserved.</span><span>Made with ❤️ by <a href="#" data-action="owner" style="color:white;font-weight:850">SANU KUMAR</a></span></div></div></footer>
 
 <div class="overlay" id="detailOverlay"><div class="modal"><div class="modal-header"><h2>Product Details</h2><button class="close-btn" data-close="detailOverlay">×</button></div><div id="detailContent"></div></div></div>
 <div class="overlay" id="cartOverlay"><div class="modal narrow"><div class="modal-header"><h2>Your Shopping Cart</h2><button class="close-btn" data-close="cartOverlay">×</button></div><div id="cartContent"></div></div></div>
@@ -139,8 +170,71 @@ function isSecondHand(product){const condition=String(product.Condition||product
 function imageHTML(product){const url=String(product.ImageURL||"").trim();if(!url)return '<div class="product-emoji">'+productEmoji(product)+'</div>';return '<img src="'+escapeHTML(url)+'" alt="'+escapeHTML(getProductName(product))+'" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><div class="product-emoji" hidden>'+productEmoji(product)+'</div>'}
 function showToast(message){const el=document.getElementById("toast");el.textContent=message;el.classList.add("show");clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>el.classList.remove("show"),2800)}
 function setLoading(show){document.getElementById("loading").classList.toggle("show",!!show)}
-function openModal(id){document.getElementById(id).classList.add("show");document.body.style.overflow="hidden"}
-function closeModal(id){document.getElementById(id).classList.remove("show");if(!document.querySelector(".overlay.show"))document.body.style.overflow=""}
+let customerModalCloseTimer=null;
+let customerPendingModalClose=null;
+let customerPendingHistoryBack=false;
+function openModal(id){
+ const modal=document.getElementById(id);
+ if(!modal)return;
+ const wasOpen=modal.classList.contains("show");
+ modal.classList.add("show");
+ document.body.style.overflow="hidden";
+ if(wasOpen)return;
+ const state=history.state;
+ // When one modal is replaced by another (for example Cart -> Checkout),
+ // reuse the current history entry instead of leaving a stale Back entry.
+ if(customerModalCloseTimer&&customerPendingModalClose&&state?.__laxmiCustomer&&state.modal===customerPendingModalClose){
+  clearTimeout(customerModalCloseTimer);
+  customerModalCloseTimer=null;
+  customerPendingModalClose=null;
+  history.replaceState({__laxmiCustomer:true,layer:"modal",modal:id},"",location.href);
+ }else if(!(state?.__laxmiCustomer&&state.modal===id)){
+  history.pushState({__laxmiCustomer:true,layer:"modal",modal:id},"",location.href);
+ }
+}
+function closeModal(id,fromPopState=false){
+ const modal=document.getElementById(id);
+ if(!modal)return;
+ const wasOpen=modal.classList.contains("show");
+ modal.classList.remove("show");
+ if(!document.querySelector(".overlay.show"))document.body.style.overflow="";
+ if(!fromPopState&&wasOpen&&history.state?.__laxmiCustomer&&history.state.modal===id){
+  customerPendingModalClose=id;
+  if(customerModalCloseTimer)clearTimeout(customerModalCloseTimer);
+  customerModalCloseTimer=setTimeout(()=>{
+   const pending=customerPendingModalClose;
+   customerModalCloseTimer=null;
+   customerPendingModalClose=null;
+   if(pending===id&&history.state?.__laxmiCustomer&&history.state.modal===id){
+    customerPendingHistoryBack=true;
+    history.back();
+   }
+  },0);
+ }
+}
+function setupCustomerBackNavigation(){
+ const rootState={__laxmiCustomer:true,layer:"root"};
+ const guardState={__laxmiCustomer:true,layer:"guard"};
+ try{
+  // The guard entry keeps Android Back on the website when the customer is
+  // already at the home page, rather than immediately leaving the page.
+  history.replaceState(rootState,"",location.href);
+  history.pushState(guardState,"",location.href);
+ }catch(error){console.warn("Back navigation could not be initialized:",error);return;}
+ window.addEventListener("popstate",event=>{
+  if(customerPendingHistoryBack){customerPendingHistoryBack=false;return;}
+  const visible=[...document.querySelectorAll(".overlay.show")];
+  if(visible.length){
+   closeModal(visible[visible.length-1].id,true);
+   return;
+  }
+  // When Back reaches the root entry, restore the guard so the site remains
+  // open. At the root there is no earlier in-site screen to navigate to.
+  if(!event.state?.__laxmiCustomer||event.state.layer==="root"){
+   try{history.pushState(guardState,"",location.href)}catch(error){console.warn(error)}
+  }
+ });
+}
 function normalizeSettings(){if(!Array.isArray(settings))return;const output={};settings.forEach(row=>{if(row.Key!==undefined)output[row.Key]=row.Value});settings=output}
 
 async function apiRequest(action,payload={}){
@@ -195,7 +289,7 @@ function jsonpRequest(action){
  });
 }
 
-async function loadStoreData(){setLoading(true);try{const result=await jsonpRequest("getStoreData");const data=result.data||result;products=Array.isArray(data.products)?data.products:[];categories=Array.isArray(data.categories)?data.categories:[];settings=data.settings||{};normalizeSettings();normalizeProducts();renderAll()}catch(error){console.error("Store loading error:",error);categories=FALLBACK_CATEGORIES;renderAll();document.getElementById("bestSellerGrid").innerHTML='<div class="empty-state"><div class="empty-icon">⚡</div><h3>Store connection not ready</h3><p>'+escapeHTML(error.message)+'</p></div>';document.getElementById("productGrid").innerHTML='<div class="empty-state"><div class="empty-icon">🛍️</div><h3>Products will appear here</h3><p>The storefront is ready. Live products will load after connecting the backend.</p></div>'}finally{setLoading(false)}}
+async function loadStoreData(){setLoading(true);try{const result=await jsonpRequest("getStoreData");const data=result.data||result;products=Array.isArray(data.products)?data.products:[];categories=Array.isArray(data.categories)?data.categories:[];settings=data.settings||{};normalizeSettings();normalizeProducts();renderAll()}catch(error){console.error("Store loading error:",error);categories=FALLBACK_CATEGORIES;renderAll();document.getElementById("bestSellerGrid").innerHTML='<div class="empty-state"><div class="empty-icon"><img class="empty-logo" src="logo.png" alt="Laxmi Electronics logo"></div><h3>Store connection not ready</h3><p>'+escapeHTML(error.message)+'</p></div>';document.getElementById("productGrid").innerHTML='<div class="empty-state"><div class="empty-icon">🛍️</div><h3>Products will appear here</h3><p>The storefront is ready. Live products will load after connecting the backend.</p></div>'}finally{setLoading(false)}}
 function normalizeProducts(){products=products.map(p=>({...p,SellingPrice:toNumber(p.SellingPrice),OriginalPrice:toNumber(p.OriginalPrice),Stock:Math.max(0,toNumber(p.Stock)),SoldQty:Math.max(0,toNumber(p.SoldQty)),Popularity:toNumber(p.Popularity)}))}
 function renderAll(){updateStoreStatus();updateFooter();renderCategories();renderSidebarCategories();renderCategoryFilter();renderSecondHandProducts();renderBestSellers();renderProducts();renderPopularProducts();updateCartCount()}
 function updateStoreStatus(){isStoreOpen=String(settings.StoreStatus||"OPEN").toUpperCase()==="OPEN";const notice=document.getElementById("storeNotice");if(!isStoreOpen){notice.classList.add("show");document.getElementById("nextOpeningText").textContent=settings.NextOpeningTime?"Next opening: "+settings.NextOpeningTime:"Please check again later."}else notice.classList.remove("show")}
@@ -265,7 +359,8 @@ function openOwnerWhatsApp(){const number=String(CONFIG.OWNER_WHATSAPP_NUMBER||s
 document.addEventListener("click",event=>{const close=event.target.closest("[data-close]");if(close){closeModal(close.dataset.close);return}const el=event.target.closest("[data-action]");if(!el){if(event.target.classList.contains("overlay"))closeModal(event.target.id);return}const action=el.dataset.action,id=el.dataset.id;switch(action){case"cart":openCart();break;case"track":openTracking();break;case"retryRecent":loadRecentOrder();break;case"forgetRecent":clearRecentOrder();break;case"whatsapp":openWhatsApp();break;case"owner":openOwnerWhatsApp();break;case"details":openProductDetails(id);break;case"add":addToCart(id);break;case"addDetail":addDetailToCart();break;case"category":selectCategory(id);break;case"checkout":openCheckout();break;case"clearFilters":clearFilters();break;case"remove":removeCartItem(id,safeJSON(el.dataset.variant,{}));break;case"quantity":changeQuantity(id,safeJSON(el.dataset.variant,{}),Number(el.dataset.difference));break;case"shopFromCart":closeModal("cartOverlay");break}});
 document.getElementById("headerSearch").addEventListener("input",function(){searchProducts(this.value);document.getElementById("productSearch").value=this.value});
 document.getElementById("productSearch").addEventListener("input",function(){document.getElementById("headerSearch").value=this.value;renderProducts()});["categoryFilter","sortFilter","maxPrice","inStockOnly"].forEach(id=>document.getElementById(id).addEventListener("change",renderProducts));
-document.getElementById("checkoutForm").addEventListener("submit",submitOrder);document.getElementById("trackingForm").addEventListener("submit",trackOrder);document.addEventListener("keydown",event=>{if(event.key==="Escape")document.querySelectorAll(".overlay.show").forEach(modal=>closeModal(modal.id))});
+document.getElementById("checkoutForm").addEventListener("submit",submitOrder);document.getElementById("trackingForm").addEventListener("submit",trackOrder);document.addEventListener("keydown",event=>{if(event.key==="Escape"){const visible=[...document.querySelectorAll(".overlay.show")];if(visible.length)closeModal(visible[visible.length-1].id)}});
+setupCustomerBackNavigation();
 document.getElementById("currentYear").textContent=new Date().getFullYear();renderDefaultCategories();updateCartCount();loadStoreData();
 </script>
 </body>
