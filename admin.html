@@ -24,6 +24,35 @@
 @media(max-width:1000px){.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dashboard-grid{grid-template-columns:1fr}.layout{grid-template-columns:190px minmax(0,1fr)}.main{padding:18px}}
 @media(max-width:680px){.topbar{height:58px;padding:0 12px}.top-title{font-size:11px}.top-sub{font-size:8px}.top-right .live-pill{display:none}.layout{display:block;min-height:calc(100vh - 58px)}.sidebar{display:none}.main{padding:15px 12px 82px}.page-head{align-items:flex-start;flex-direction:column}.page-head h1{font-size:20px}.head-actions{width:100%}.head-actions .btn{flex:1}.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.stat-card{padding:11px}.stat-card strong{font-size:20px}.panel{padding:12px}.toolbar input,.toolbar select{flex:1;min-width:0}.toolbar .grow{flex-basis:100%}.mobile-nav{display:flex;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);z-index:50;justify-content:space-around;padding:7px 4px calc(7px + env(safe-area-inset-bottom));box-shadow:0 -5px 20px #21152a0a}.mobile-nav button{border:0;background:none;color:#777180;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:8px;font-weight:800;min-width:54px}.mobile-nav button span:first-child{font-size:17px}.mobile-nav button.active{color:var(--primary-dark)}.form-grid{grid-template-columns:1fr}.modal{padding:15px}.table-wrap{border-radius:9px}.dashboard-grid{gap:10px}}
 @media(max-width:380px){.main{padding-left:9px;padding-right:9px}.stats-grid{gap:6px}.stat-card strong{font-size:18px}.topbar{padding:0 8px}}
+
+/* LAXMI ELECTRONICS BRANDING AND STRONGER TYPE */
+.brand{gap:12px}
+.brand-mark{width:52px;height:52px;flex:0 0 52px;object-fit:contain;display:block;background:transparent;border-radius:0;padding:0;filter:drop-shadow(0 2px 3px rgba(40,25,10,.12))}
+.brand strong{font-size:14px;font-weight:950;letter-spacing:-.2px;white-space:nowrap}
+.brand span{font-size:9px;font-weight:850;letter-spacing:.65px}
+.top-left{gap:10px;min-width:0}
+.top-logo{width:42px;height:42px;flex:0 0 42px;background:transparent;border-radius:0;display:flex;align-items:center;justify-content:center}
+.top-logo img{width:100%;height:100%;object-fit:contain;display:block;filter:drop-shadow(0 2px 3px rgba(40,25,10,.12))}
+.top-brand-copy{min-width:0}
+.top-title{font-size:12px;font-weight:950;letter-spacing:-.25px;white-space:nowrap}
+.top-sub{font-size:8px;font-weight:850;letter-spacing:.65px;white-space:nowrap}
+h1,h2,h3,h4{font-weight:850}
+.page-head h1,.panel-head h3,.modal-head h2,.stat-card strong{font-weight:950}
+.btn,.mini-btn,.nav-btn,.live-pill,.status-badge{font-weight:900}
+.field label,.store-control strong,.alert-row strong,.brand strong{font-weight:900}
+@media(max-width:680px){
+ .topbar{padding:0 10px}
+ .top-left{gap:7px}
+ .top-logo{width:34px;height:34px;flex-basis:34px}
+ .top-title{font-size:10px;letter-spacing:-.2px}
+ .top-sub{font-size:7px;letter-spacing:.35px}
+ .top-right{gap:5px}
+ .top-right .icon-btn{width:31px;height:31px}
+ .top-right .btn{min-height:31px;padding:0 8px;font-size:9px}
+ .brand-mark{width:48px;height:48px;flex-basis:48px}
+ .brand strong{font-size:13px}
+}
+
 </style>
 </head>
 <body>
@@ -32,7 +61,7 @@
 <!-- LOGIN -->
 <section class="login-wrap" id="loginScreen">
   <div class="login-card">
-    <div class="brand"><div class="brand-mark">⚡</div><div><strong>LAXMI ELECTRONICS</strong><span>CHANDWA · ADMIN PORTAL</span></div></div>
+    <div class="brand"><img class="brand-mark" src="logo.png" alt="Laxmi Electronics logo"><div><strong>LAXMI ELECTRONICS</strong><span>CHANDWA · ADMIN PORTAL</span></div></div>
     <h1>Welcome back</h1>
     <p>Sign in to manage products, orders, inventory and your store settings.</p>
     <form id="loginForm">
@@ -48,7 +77,7 @@
 <!-- ADMIN APP -->
 <div class="app hidden" id="adminApp">
   <header class="topbar">
-    <div class="top-left"><div class="top-logo">⚡</div><div><div class="top-title">Laxmi Electronics <span class="muted">/ Admin</span></div><div class="top-sub">STORE MANAGEMENT DASHBOARD</div></div></div>
+    <div class="top-left"><div class="top-logo"><img src="logo.png" alt="Laxmi Electronics logo"></div><div class="top-brand-copy"><div class="top-title">LAXMI ELECTRONICS</div><div class="top-sub">CHANDWA · ADMIN DASHBOARD</div></div></div>
     <div class="top-right"><span class="live-pill" id="storeStatusPill">● STORE OPEN</span><button class="icon-btn" id="refreshButton" title="Refresh">↻</button><button class="btn btn-light" id="logoutButton">Logout</button></div>
   </header>
   <div class="layout">
@@ -222,8 +251,42 @@ function money(v){return "₹"+num(v).toLocaleString("en-IN",{maximumFractionDig
 function parseJSON(v,fallback){if(!v)return fallback;if(typeof v==="object")return v;try{return JSON.parse(v);}catch(e){return fallback;}}
 function toast(message){const el=document.getElementById("toast");el.textContent=message;el.classList.add("show");clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove("show"),2800);}
 function loading(show){document.getElementById("loading").classList.toggle("show",!!show);}
-function showModal(id){document.getElementById(id).classList.add("show");document.body.style.overflow="hidden";}
-function closeModal(id){document.getElementById(id).classList.remove("show");if(!document.querySelector(".modal-overlay.show"))document.body.style.overflow="";}
+let adminModalCloseTimer=null;
+let adminPendingModalClose=null;
+let adminPendingHistoryBack=false;
+let adminBackNavigationReady=false;
+function activeAdminScreen(){return document.querySelector(".screen.active")?.id?.replace("screen-","")||"dashboard";}
+function showModal(id){
+  const modal=document.getElementById(id);if(!modal)return;
+  const wasOpen=modal.classList.contains("show");
+  modal.classList.add("show");document.body.style.overflow="hidden";
+  if(wasOpen)return;
+  const state=history.state;
+  if(adminModalCloseTimer&&adminPendingModalClose&&state?.__laxmiAdmin&&state.modal===adminPendingModalClose){
+    clearTimeout(adminModalCloseTimer);adminModalCloseTimer=null;adminPendingModalClose=null;
+    history.replaceState({__laxmiAdmin:true,screen:activeAdminScreen(),modal:id},"",location.href);
+  }else if(!(state?.__laxmiAdmin&&state.modal===id)){
+    history.pushState({__laxmiAdmin:true,screen:activeAdminScreen(),modal:id},"",location.href);
+  }
+}
+function closeModal(id,fromPopState=false){
+  const modal=document.getElementById(id);if(!modal)return;
+  const wasOpen=modal.classList.contains("show");
+  modal.classList.remove("show");
+  if(!document.querySelector(".modal-overlay.show"))document.body.style.overflow="";
+  if(!fromPopState&&wasOpen&&history.state?.__laxmiAdmin&&history.state.modal===id){
+    adminPendingModalClose=id;
+    if(adminModalCloseTimer)clearTimeout(adminModalCloseTimer);
+    adminModalCloseTimer=setTimeout(()=>{
+      const pending=adminPendingModalClose;
+      adminModalCloseTimer=null;adminPendingModalClose=null;
+      if(pending===id&&history.state?.__laxmiAdmin&&history.state.modal===id){
+        adminPendingHistoryBack=true;
+        history.back();
+      }
+    },0);
+  }
+}
 function apiConfigured(){return API_URL&&!API_URL.includes("PASTE_YOUR_");}
 
 async function api(action,payload={},useAuth=true){
@@ -268,11 +331,48 @@ async function verifySession(){
   catch(e){adminToken="";sessionStorage.removeItem(SESSION_KEY);showLogin();}
 }
 
-function navigate(screen){
+function navigate(screen,fromPopState=false){
+  const previous=activeAdminScreen();
   document.querySelectorAll(".screen").forEach(el=>el.classList.toggle("active",el.id==="screen-"+screen));
   document.querySelectorAll("[data-screen]").forEach(el=>el.classList.toggle("active",el.dataset.screen===screen));
   const titles={dashboard:"Dashboard",products:"Products",categories:"Categories",inventory:"Inventory",orders:"Orders",store:"Store & Shipping",notifications:"Notifications"};
   document.title=(titles[screen]||"Admin")+" | Laxmi Electronics";
+  if(!fromPopState&&adminBackNavigationReady&&previous!==screen){
+    const state={__laxmiAdmin:true,screen};
+    if(adminModalCloseTimer&&adminPendingModalClose&&history.state?.__laxmiAdmin&&history.state.modal===adminPendingModalClose){
+      clearTimeout(adminModalCloseTimer);adminModalCloseTimer=null;adminPendingModalClose=null;
+      history.replaceState(state,"",location.href);
+    }else{
+      history.pushState(state,"",location.href);
+    }
+  }
+}
+function setupAdminBackNavigation(){
+  const rootState={__laxmiAdmin:true,screen:"dashboard",layer:"root"};
+  const guardState={__laxmiAdmin:true,screen:"dashboard",layer:"guard"};
+  try{
+    history.replaceState(rootState,"",location.href);
+    history.pushState(guardState,"",location.href);
+    adminBackNavigationReady=true;
+  }catch(error){console.warn("Admin Back navigation could not be initialized:",error);return;}
+  window.addEventListener("popstate",event=>{
+    if(adminPendingHistoryBack){adminPendingHistoryBack=false;return;}
+    const visible=[...document.querySelectorAll(".modal-overlay.show")];
+    if(visible.length){
+      closeModal(visible[visible.length-1].id,true);
+      return;
+    }
+    const state=event.state;
+    if(state?.__laxmiAdmin){
+      navigate(state.screen||"dashboard",true);
+      if(state.layer==="root"){
+        try{history.pushState(guardState,"",location.href)}catch(error){console.warn(error)}
+      }
+    }else{
+      navigate("dashboard",true);
+      try{history.pushState(guardState,"",location.href)}catch(error){console.warn(error)}
+    }
+  });
 }
 
 function normalizeSettings(){
@@ -473,8 +573,9 @@ document.addEventListener("click",async e=>{
 document.addEventListener("submit",e=>{if(e.target.id==="orderUpdateForm")updateOrder(e);});
 document.querySelectorAll(".modal-overlay").forEach(el=>el.addEventListener("click",e=>{if(e.target===el)closeModal(el.id);}));
 
-document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".modal-overlay.show").forEach(m=>closeModal(m.id));});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){const visible=[...document.querySelectorAll(".modal-overlay.show")];if(visible.length)closeModal(visible[visible.length-1].id);}});
 
+setupAdminBackNavigation();
 syncSoundUI();
 verifySession();
 </script>
